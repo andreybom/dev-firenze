@@ -1,4 +1,4 @@
-package com.suaempresa.loteamento;
+package br.com.firenze.loteamento;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class LoteamentoApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(LoteamentoApplication.class, args);
-    }
-
+  public static void main(String[] args) {
+    SpringApplication.run(LoteamentoApplication.class, args);
+  }
 }

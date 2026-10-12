@@ -1,0 +1,10 @@
+spring:
+  config:
+    activate:
+      on-profile: production
+  jpa:
+    show-sql: false
+
+server:
+  forward-headers-strategy: framework
+  shutdown: graceful

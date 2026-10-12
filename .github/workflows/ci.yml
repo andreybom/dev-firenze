@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    services:
+      postgres:
+        image: postgres:18.6
+        env:
+          POSTGRES_DB: loteamento_ci
+          POSTGRES_USER: firenze_ci
+          POSTGRES_PASSWORD: firenze_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U firenze_ci -d loteamento_ci"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v7
+
+      - name: Configurar Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: maven
+          cache-dependency-path: backend/pom.xml
+
+      - name: Verificar backend
+        working-directory: backend
+        run: >-
+          mvn --batch-mode verify
+          -Dspring.datasource.url=jdbc:postgresql://localhost:5432/loteamento_ci
+          -Dspring.datasource.username=firenze_ci
+          -Dspring.datasource.password=firenze_ci
+          -Dspring.datasource.driver-class-name=org.postgresql.Driver
+
+  frontend:
+    name: Frontend
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v7
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Instalar dependências
+        working-directory: frontend
+        run: npm ci --ignore-scripts
+
+      - name: Verificar lint
+        working-directory: frontend
+        run: npm run lint
+
+      - name: Verificar formatação
+        working-directory: frontend
+        run: npm run format:check
+
+      - name: Executar testes
+        working-directory: frontend
+        run: npm run test -- --watch=false
+
+      - name: Gerar build de produção
+        working-directory: frontend
+        run: npm run build
+
+      - name: Auditar dependências
+        working-directory: frontend
+        run: npm audit --audit-level=high

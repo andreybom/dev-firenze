@@ -1,8 +1,9 @@
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }
 
 body {
-  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
 }

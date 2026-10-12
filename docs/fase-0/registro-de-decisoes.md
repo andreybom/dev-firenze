@@ -47,7 +47,11 @@ Este arquivo consolida apenas decisões efetivamente aprovadas. As alternativas 
 | DEC-033 | 10/10/2026 | Governança | Designar um titular e um substituto para cada área decisória, permitindo que uma pessoa acumule áreas, mas exigindo responsável identificável por decisão. Andrey Bom permanece como aprovador final. | Evitar decisões sem proprietário e manter continuidade durante ausências. | Andrey Bom | PEN-017, opção B | Aprovada |
 | DEC-034 | 10/10/2026 | Bloqueio | Exigir categoria padronizada e justificativa obrigatória para aplicar e retirar bloqueios. Categorias iniciais: restrição judicial/jurídica; irregularidade documental/registral; impedimento técnico/urbanístico/ambiental; divergência financeira/contratual; revisão interna da Diretoria; e Outro. Permitir anexos e exigi-los quando houver documento formal que fundamente a restrição. | Padronizar relatórios sem perder o contexto necessário à auditoria. | Andrey Bom | PEN-018, opção B | Aprovada |
 | DEC-035 | 10/10/2026 | Planejamento | Adiar a entrega dos arquivos de migração e a identificação nominal de titulares/substitutos, sem bloquear a elaboração do plano nem as etapas iniciais. Os dados deverão estar disponíveis antes dos ensaios de migração e os responsáveis nominais antes da homologação. | Permitir o avanço do planejamento preservando marcos obrigatórios antes da entrada em produção. | Andrey Bom | PEN-013/PEN-017 | Aprovada |
-| DEC-036 | 12/10/2026 | Banco de dados | Adotar PostgreSQL Server 18.1 como versão-alvo do MVP; referências observadas às versões 17 e 15 ficam superadas e não são alvo de implantação. | Padronizar a versão do banco solicitada para a implantação. | Aprovador final | Orientação nesta conversa | Aprovada |
+| DEC-036 | 12/10/2026 | Banco de dados | Adotar PostgreSQL Server 18.1 como versão-alvo do MVP; referências observadas às versões 17 e 15 ficam superadas e não são alvo de implantação. | Padronizar a versão do banco solicitada para a implantação. | Aprovador final | Orientação nesta conversa | Substituída pela DEC-040 |
+| DEC-037 | 12/10/2026 | Arquitetura | Adotar monólito modular, frontend Angular separado, API REST `/api/v1`, autenticação por sessão/cookie em mesma origem e os limites de módulos documentados para o MVP. | Manter implantação e transações simples, com separação explícita dos domínios. | Andrey Bom | M1-001, opção A | Aprovada |
+| DEC-038 | 12/10/2026 | Documentos | Armazenar arquivos do MVP em volume local dedicado, mantendo metadados e hash no PostgreSQL e uma abstração que permita migração futura para MinIO/S3. | Reduzir a complexidade operacional inicial sem acoplar as regras de negócio ao sistema de arquivos. | Andrey Bom | M1-002, opção A | Aprovada |
+| DEC-039 | 12/10/2026 | Dados | Aprovar o modelo conceitual inicial e autorizar a primeira migração Flyway limitada ao núcleo necessário. | Permitir evolução incremental do esquema com controle de escopo e versionamento. | Andrey Bom | M1-003, opção A | Aprovada |
+| DEC-040 | 12/10/2026 | Banco de dados | Adotar PostgreSQL major 18 como alvo do MVP, permitindo variar a atualização corretiva `18.x` conforme disponibilidade e aprovação do ambiente. | Preservar compatibilidade na major aprovada e permitir atualizações de correção e segurança, incluindo a 18.6 já validada. | Andrey Bom | Orientação nesta conversa | Aprovada |
 
 Status sugeridos: `Proposta`, `Aprovada`, `Substituída` ou `Cancelada`.
 
@@ -96,7 +100,11 @@ As decisões `DEC-028` a `DEC-034` e a alteração `ESC-001` foram aprovadas por
 
 Em **12/10/2026**, o aprovador final confirmou a aprovação do plano de implantação e autorizou explicitamente o início da implementação. O registro operacional está no marco M0 do [controle de execução](../plano-implantacao/06-controle-de-execucao.md).
 
-Em **12/10/2026**, o aprovador final definiu PostgreSQL Server 18.1 como a versão-alvo (DEC-036), substituindo as referências anteriores a 17 e 15.
+Em **12/10/2026**, o aprovador final definiu inicialmente PostgreSQL Server 18.1 como versão-alvo (DEC-036), substituindo as referências anteriores a 17 e 15.
+
+Em **12/10/2026**, Andrey Bom aprovou integralmente as opções A de M1-001, M1-002 e M1-003. O marco M1 foi aprovado e a primeira migração do núcleo foi autorizada (DEC-037 a DEC-039).
+
+Ainda em **12/10/2026**, Andrey Bom passou a considerar a major PostgreSQL 18 como requisito, permitindo variação da atualização corretiva `18.x`. A DEC-040 substitui a DEC-036; a versão 18.6 usada na validação local passa a atender à decisão.
 
 ## Critério para encerramento da Fase 0
 
@@ -105,7 +113,7 @@ A Fase 0 estará concluída quando:
 - [x] o escopo do MVP estiver aprovado;
 - [ ] as regras críticas do negócio e do financeiro estiverem documentadas;
 - [ ] a origem e a qualidade dos dados tiverem sido avaliadas;
-- [ ] a arquitetura técnica e as integrações estiverem decididas;
+- [x] a arquitetura técnica e as estratégias de integração estiverem decididas;
 - [ ] a matriz de permissões e os requisitos de auditoria estiverem aprovados;
 - [ ] riscos e pendências possuírem responsáveis e tratamento;
-- [ ] houver autorização explícita para iniciar a implementação.
+- [x] houver autorização explícita para iniciar a implementação.

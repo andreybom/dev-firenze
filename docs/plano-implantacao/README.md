@@ -64,7 +64,7 @@ O repositório contém atualmente:
 
 - frontend Angular 22;
 - backend Java 25 com Spring Boot 4.1;
-- PostgreSQL Server 18.1 como versão-alvo aprovada (DEC-036; ambiente ainda será preparado no marco arquitetural);
+- PostgreSQL Server major 18 como versão-alvo, permitindo atualização corretiva `18.x` aprovada (DEC-040, que substitui a DEC-036);
 - endpoint inicial de verificação de saúde.
 
 Essa composição será confirmada no marco arquitetural. Antes de qualquer ambiente compartilhado será obrigatório:

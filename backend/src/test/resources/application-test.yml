@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:loteamento;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  flyway:
+    enabled: true
+
+app:
+  cors:
+    allowed-origins: http://localhost:4200
