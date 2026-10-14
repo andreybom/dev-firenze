@@ -8,6 +8,14 @@
 
 Arquitetura aprovada por **Andrey Bom em 12/10/2026**, conforme [formulário do M1](02-aprovacao-m1.md) e decisões DEC-037 a DEC-039.
 
+Documentos complementares:
+
+- [Configuração de ambientes](03-configuracao-de-ambientes.md)
+- [Convenções de desenvolvimento](04-convencoes-de-desenvolvimento.md)
+- [Padrão de API, paginação e filtros](05-padrao-api.md)
+- [Datas, horários, moeda e fuso](06-datas-moeda-fuso.md)
+- [Erros, validações e mensagens](07-erros-validacoes-mensagens.md)
+
 ## 1. Estilo arquitetural
 
 O MVP será construído como **monólito modular**, com frontend Angular separado e API REST Spring Boot. Essa abordagem mantém implantação e transações simples no servidor local, mas exige limites claros entre os módulos para evitar acoplamento indevido.

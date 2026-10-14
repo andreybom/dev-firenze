@@ -11,7 +11,7 @@ Este é o painel vivo do projeto. O [backlog detalhado](02-backlog-detalhado.md)
 | Frente | Tarefas | Esforço base | Concluído | Em execução | Bloqueado | Situação |
 |---|---:|---:|---:|---:|---:|---|
 | Mobilização e gestão | 8 | 5,5 dp | 18,2% (1/5,5 dp) | 0 | 0 | Em execução |
-| Arquitetura e fundação | 14 | 20,5 dp | 53,7% (11/20,5 dp) | 1 | 0 | Configuração por ambiente, lint e formatação concluídos; pipeline criado e aguardando execução remota |
+| Arquitetura e fundação | 14 | 20,5 dp | 85,4% (17,5/20,5 dp) | 0 | 0 | Fundação, pipeline e padrões transversais da API concluídos |
 | Segurança, identidade e auditoria | 12 | 30,5 dp | 0% | 0 | 0 | Não iniciada |
 | Cadastros estruturais | 11 | 25 dp | 8% (2/25 dp) | 0 | 0 | Modelo físico do núcleo concluído; implementação dos cadastros ainda não iniciada |
 | Clientes e corretores | 8 | 17 dp | 0% | 0 | 0 | Não iniciada |
@@ -22,7 +22,7 @@ Este é o painel vivo do projeto. O [backlog detalhado](02-backlog-detalhado.md)
 | Infraestrutura e continuidade | 12 | 23 dp | 0% | 0 | 0 | Não iniciada |
 | Qualidade e segurança final | 12 | 41 dp | 0% | 0 | 0 | Não iniciada |
 | Homologação, treinamento e implantação | 21 | 34,5 dp | 0% | 0 | 0 | Gate PEN-017 futuro |
-| **Total** | **155** | **344 dp** | **4,1% (14/344 dp)** | **1** | **0** | **Preparação do M2 em execução** |
+| **Total** | **155** | **344 dp** | **6,0% (20,5/344 dp)** | **0** | **0** | **Preparação do M2 em execução** |
 
 ## 2. Tarefas ativas ou fora do estado padrão
 
@@ -34,11 +34,14 @@ Este é o painel vivo do projeto. O [backlog detalhado](02-backlog-detalhado.md)
 | ARC-002 | Concluída | Líder Técnico (função) | 12/10/2026 | — | 100% | Java 25, Spring Boot 4.1, Angular 22, Node 24 e PostgreSQL major 18 validados; DEC-040 permite patch `18.x` e cobre o servidor 18.6 testado |
 | ARC-003 | Concluída | Backend | 12/10/2026 | — | 100% | Coordenadas e pacotes alterados para `br.com.firenze:loteamento`; nome do produto padronizado como Firenze |
 | ARC-004 | Concluída | Líder Técnico | 12/10/2026 | — | 100% | [Arquitetura modular](../arquitetura/README.md), [modelo conceitual](../arquitetura/01-modelo-conceitual-inicial.md) e [aprovação do M1](../arquitetura/02-aprovacao-m1.md) |
+| ARC-005 | Concluída | Backend/Frontend | 12/10/2026 | — | 100% | [Padrão de API](../arquitetura/05-padrao-api.md), utilitários de paginação nos dois lados e configurações alinhadas em `/api/v1`, com testes aprovados |
+| ARC-006 | Concluída | Backend/Frontend | 12/10/2026 | — | 100% | [Contrato de erros](../arquitetura/07-erros-validacoes-mensagens.md), correlação, validações e fallback seguro implementados com testes HTTP e de frontend |
+| ARC-007 | Concluída | Backend/Frontend | 12/10/2026 | — | 100% | [Política regional](../arquitetura/06-datas-moeda-fuso.md), UTC na persistência, `America/Sao_Paulo`, `pt-BR` e BRL implementados e testados |
 | ARC-008 | Concluída | Backend | 12/10/2026 | — | 100% | V1 aplicada pelo Flyway em bancos vazios H2 e PostgreSQL 18.6; criação ocorreu exclusivamente pela migração versionada |
 | ARC-009 | Concluída | Backend | 12/10/2026 | — | 100% | `ddl-auto=validate`; aplicação inicializada sobre o esquema criado pelo Flyway sem alteração automática |
 | ARC-010 | Concluída | Backend/DevOps | 12/10/2026 | — | 100% | Perfis `local`, `test`, `homologation` e `production`, variáveis externas, `.env.example` sem segredo e [matriz de configuração](../arquitetura/03-configuracao-de-ambientes.md) |
 | ARC-011 | Concluída | Líder Técnico/Frontend | 12/10/2026 | — | 100% | EditorConfig, Spotless, ESLint/Angular ESLint, Prettier e [convenções de desenvolvimento](../arquitetura/04-convencoes-de-desenvolvimento.md) validados localmente |
-| ARC-012 | Em validação | DevOps/QA | 12/10/2026 | — | 80% | Workflow `.github/workflows/ci.yml` criado; falta executar no GitHub após publicação para comprovar falha/sucesso remoto |
+| ARC-012 | Concluída | DevOps/QA | 12/10/2026 | — | 100% | [Execução CI #38324178157](https://github.com/andreybom/dev-firenze/actions/runs/38324178157) concluída com sucesso para o commit `31a218c932d3e1ffa6d0abe1894528b5e761366a` |
 | CAD-001 | Concluída | Backend/Dados | 12/10/2026 | — | 100% | Modelo de empresa, loteamento, quadra e lote aprovado no M1 e materializado na migração V1, com restrições e índices testados |
 
 Quando uma tarefa começar, remover a linha indicativa e incluir a tarefa. Ao concluir, manter a linha até o fechamento do marco correspondente, com a evidência vinculada.
@@ -47,7 +50,7 @@ Quando uma tarefa começar, remover a linha indicativa e incluir a tarefa. Ao co
 
 | ID | Tarefa afetada | Impedimento | Desde | Responsável pela remoção | Próxima ação | Prazo |
 |---|---|---|---|---|---|---|
-| — | — | Nenhum impedimento bloqueante registrado | — | — | Validar ARC-012 após a próxima publicação e iniciar ARC-005/ARC-007 | — |
+| — | — | Nenhum impedimento bloqueante registrado | — | — | Iniciar SEG-001 — matriz de permissões por perfil e operação | — |
 
 ## 4. Gates futuros já conhecidos
 
@@ -62,7 +65,7 @@ Quando uma tarefa começar, remover a linha indicativa e incluir a tarefa. Ao co
 |---|---:|---|---|---|---|---|
 | M0 — Plano aprovado | 1 | Aprovado | — | 12/10/2026 | Aprovador final | Aprovação e autorização registradas nesta conversa |
 | M1 — Arquitetura aprovada | 2 | Aprovado | — | 12/10/2026 | Andrey Bom | [Formulário de aprovação](../arquitetura/02-aprovacao-m1.md) e DEC-037 a DEC-039 |
-| M2 — Base segura pronta | 3 | Em preparação | A definir | — | Líder Técnico/QA | Pipeline e fundação técnica em validação |
+| M2 — Base segura pronta | 3 | Em preparação | A definir | — | Líder Técnico/QA | Fundação e padrões transversais validados; identidade e autorização são a próxima frente |
 | M3 — Cadastros aceitos | 7 | Não iniciado | A definir | — | Negócio/Comercial | — |
 | M4 — Comercial aceito | 9 | Não iniciado | A definir | — | Comercial/Diretoria | — |
 | M5 — Contratos aceitos | 12 | Não iniciado | A definir | — | Jurídico | — |
@@ -76,9 +79,9 @@ Quando uma tarefa começar, remover a linha indicativa e incluir a tarefa. Ao co
 
 | Indicador | Valor | Meta/sinal |
 |---|---:|---|
-| Progresso ponderado | 4,1% | Conforme cronograma após M1 |
-| Tarefas concluídas | 11/155 | — |
-| Tarefas em execução | 1 | Limitadas à capacidade definida |
+| Progresso ponderado | 6,0% | Conforme cronograma após M1 |
+| Tarefas concluídas | 15/155 | — |
+| Tarefas em execução | 0 | Limitadas à capacidade definida |
 | Tarefas bloqueadas | 0 | Escalar críticas após 2 dias úteis |
 | Defeitos bloqueadores | 0 | Zero para qualquer marco |
 | Riscos altos/críticos sem tratamento | 0 | Zero |
@@ -106,6 +109,9 @@ Quando uma tarefa começar, remover a linha indicativa e incluir a tarefa. Ao co
 | 12/10/2026 | DEC-040 aprovada: PostgreSQL major 18 com atualização corretiva `18.x`; servidor 18.6 validado passa a atender ao alvo e ARC-002 é concluída | Aprovador final/Líder Técnico |
 | 12/10/2026 | Perfis de ambiente, contrato de variáveis e exemplo sem segredos concluíram ARC-010; Spotless, ESLint e Prettier concluíram ARC-011 com verificações verdes | Backend/Frontend/DevOps |
 | 12/10/2026 | Pipeline CI criado para backend com PostgreSQL 18.6 e frontend com lint, formatação, testes, build e auditoria; ARC-012 aguarda execução remota | DevOps/QA |
+| 12/10/2026 | Commit `31a218c` publicado em `main`; execução CI #38324178157 aprovada para o SHA publicado e ARC-012 concluída | DevOps/QA |
+| 12/10/2026 | ARC-005 e ARC-007 concluídas: contrato de paginação/filtros, `/api/v1`, UTC, `America/Sao_Paulo` e BRL implementados com 8 testes no backend e 8 no frontend | Backend/Frontend |
+| 12/10/2026 | ARC-006 concluída: respostas `application/problem+json`, validações por campo, correlação e mensagens seguras aprovadas; suíte ampliada para 13 testes no backend e 11 no frontend | Backend/Frontend |
 
 ## 8. Procedimento de atualização
 

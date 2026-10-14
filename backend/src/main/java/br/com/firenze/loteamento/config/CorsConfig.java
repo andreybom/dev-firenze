@@ -28,7 +28,8 @@ public class CorsConfig {
             .addMapping("/api/**")
             .allowedOrigins(origins)
             .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
-            .allowedHeaders("*");
+            .allowedHeaders("*")
+            .exposedHeaders("X-Correlation-Id");
       }
     };
   }
